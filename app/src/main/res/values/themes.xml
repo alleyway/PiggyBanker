@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <style name="CaptureTheme" parent="Theme.AppCompat">
+  <style name="CaptureTheme" parent="Theme.AppCompat.Light">
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowActionBarOverlay">true</item>

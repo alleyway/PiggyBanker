@@ -16,8 +16,8 @@
 
 package com.alleywayconsulting.scantograph.zxing;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -25,6 +25,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
@@ -73,6 +74,7 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
 
+    private BluetoothAdapter mBluetoothAdapter = null;
 
     ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -103,6 +105,13 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
         ambientLightManager = new AmbientLightManager(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        // If the adapter is null, then Bluetooth is not supported
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -193,11 +202,9 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
 
 
 
-        setTitle("Scan screen");
+        setTitle("Scan Codes");
 
     }
-
-
 
 
 
@@ -263,10 +270,25 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
                 intent.setClassName(this, PreferencesActivity.class.getName());
                 startActivity(intent);
                 break;
+
+            case R.id.menu_discoverable:
+                ensureDiscoverable();
+                break;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+
+    private void ensureDiscoverable() {
+        if (mBluetoothAdapter.getScanMode() !=
+                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discoverableIntent);
+        }
     }
 
 
