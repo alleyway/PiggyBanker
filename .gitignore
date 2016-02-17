@@ -6,3 +6,9 @@
 .DS_Store
 /build
 /captures
+server/build
+server/.idea/libraries
+server/.idea/workspace.xml
+server/.gradle
+server/*.iml
+
