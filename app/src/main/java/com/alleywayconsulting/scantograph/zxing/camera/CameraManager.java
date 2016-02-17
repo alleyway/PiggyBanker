@@ -42,8 +42,14 @@ public final class CameraManager {
 
   private static final int MIN_FRAME_WIDTH = 240;
   private static final int MIN_FRAME_HEIGHT = 240;
-  private static final int MAX_FRAME_WIDTH = 1200; // = 5/8 * 1920
-  private static final int MAX_FRAME_HEIGHT = 675; // = 5/8 * 1080
+
+  private static final float PORTRAIT_WIDTH_RATIO = 7f / 8;
+  private static final float PORTRAIT_HEIGHT_RATIO = 3f / 8;
+  private static final int PORTRAIT_MAX_FRAME_WIDTH = (int) (1080 * PORTRAIT_WIDTH_RATIO); // =
+  // 7/8
+  // *
+  // 1080
+  private static final int PORTRAIT_MAX_FRAME_HEIGHT = (int) (1920 * PORTRAIT_HEIGHT_RATIO);
 
   private final Context context;
   private final CameraConfigurationManager configManager;
@@ -221,8 +227,8 @@ public final class CameraManager {
         return null;
       }
 
-      int width = findDesiredDimensionInRange(screenResolution.x, MIN_FRAME_WIDTH, MAX_FRAME_WIDTH);
-      int height = findDesiredDimensionInRange(screenResolution.y, MIN_FRAME_HEIGHT, MAX_FRAME_HEIGHT);
+      int width = findDesiredDimensionInRange(PORTRAIT_WIDTH_RATIO, screenResolution.x, MIN_FRAME_WIDTH, PORTRAIT_MAX_FRAME_WIDTH);
+      int height = findDesiredDimensionInRange(PORTRAIT_HEIGHT_RATIO, screenResolution.y, MIN_FRAME_HEIGHT, PORTRAIT_MAX_FRAME_HEIGHT);
 
       int leftOffset = (screenResolution.x - width) / 2;
       int topOffset = (screenResolution.y - height) / 2;
@@ -232,8 +238,9 @@ public final class CameraManager {
     return framingRect;
   }
   
-  private static int findDesiredDimensionInRange(int resolution, int hardMin, int hardMax) {
-    int dim = 5 * resolution / 8; // Target 5/8 of each dimension
+  private static int findDesiredDimensionInRange(float ratio, int resolution, int hardMin, int hardMax) {
+    int dim = (int) (ratio * resolution);
+
     if (dim < hardMin) {
       return hardMin;
     }

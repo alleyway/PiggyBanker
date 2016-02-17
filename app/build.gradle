@@ -36,10 +36,12 @@ targetCompatibility = 1.7
 repositories {
     mavenLocal()
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.2'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.google.zxing:android-core:3.2.1'
     testCompile 'junit:junit:4.12'

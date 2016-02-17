@@ -2,6 +2,7 @@ package com.alleywayconsulting.scantograph.server.service;
 
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
+import org.krysalis.barcode4j.impl.datamatrix.DataMatrixBean;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class BarcodeServiceImpl implements BarcodeService {
     public String createSVGBarcode(String data) throws Exception {
 
 
-        Code128Bean serialBarcode = new Code128Bean();
+        DataMatrixBean serialBarcode = new DataMatrixBean();
 
         serialBarcode.setModuleWidth(1.0);
         serialBarcode.setBarHeight(24.0);

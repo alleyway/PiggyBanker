@@ -52,7 +52,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
-    private static final long BULK_MODE_SCAN_DELAY_MS = 3000L;
+    private static final long BULK_MODE_SCAN_DELAY_MS = 1500L;
 
 
     private CameraManager cameraManager;
@@ -61,7 +61,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     private ViewfinderView viewfinderView;
     private TextView statusView;
 
-    private View resultView;
+
     private boolean hasSurface;
 
     private Collection<BarcodeFormat> decodeFormats;
@@ -118,7 +118,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         viewfinderView.setCameraManager(cameraManager);
 
-        resultView = findViewById(R.id.result_view);
+
         statusView = (TextView) findViewById(R.id.status_view);
 
 
@@ -355,7 +355,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     }
 
     private void resetStatusView() {
-        resultView.setVisibility(View.GONE);
+
         statusView.setText(R.string.msg_default_status);
         statusView.setVisibility(View.VISIBLE);
         viewfinderView.setVisibility(View.VISIBLE);

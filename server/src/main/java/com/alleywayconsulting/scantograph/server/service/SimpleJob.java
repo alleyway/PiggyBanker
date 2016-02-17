@@ -6,8 +6,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Michael Lake on 2/16/16.
@@ -28,9 +27,9 @@ public class SimpleJob {
     public void trigger() {
         // sends the message to /topic/message
 
-        Date time = new GregorianCalendar().getTime();
+        int randomNumber = ThreadLocalRandom.current().nextInt(10, 21);
 
-        String timeString = String.valueOf(time.getTime());
+        String timeString = String.valueOf(randomNumber);
 
         try {
 
