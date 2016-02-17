@@ -17,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
     public void scanCodes(View view) {
         Intent intent = new Intent(this, CaptureActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
+    }
 
-
+    public void graph(View view) {
+        Intent intent = new Intent(this, GraphActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
     }
 }

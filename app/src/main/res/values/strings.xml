@@ -134,5 +134,9 @@
     <string name="title_activity_settings">App settings</string>
     <string name="email">Email</string>
     <string name="choose_server">Choose Server</string>
+    <string name="title_activity_graph">GraphActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

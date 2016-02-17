@@ -30,6 +30,7 @@ import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alleywayconsulting.scantograph.ActivityBase;
 import com.alleywayconsulting.scantograph.R;
 import com.alleywayconsulting.scantograph.zxing.camera.CameraManager;
 import com.google.zxing.BarcodeFormat;
@@ -48,7 +49,7 @@ import java.util.Map;
  * @author dswitkin@google.com (Daniel Switkin)
  * @author Sean Owen
  */
-public final class CaptureActivity extends Activity implements SurfaceHolder.Callback {
+public final class CaptureActivity extends ActivityBase implements SurfaceHolder.Callback {
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
