@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Realtime Guestbook</title>
+	<title>WebSocket Stomp Receiving Example</title>
 </head>
 <body>
-	<div>
-		<p>Write a message:</p>
-		<textarea id="message"></textarea>
-		<button type="button" id="send">Send</button>
-	</div>
-	<div>
-		<h3>Messages:</h3>
-		<ol id="messages"></ol>
-	</div>
 
-	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+Hello my friend!
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var messageList = $("#messages");
 
-			var getMessageString = function(message) {
-				var date = new Date(message.date);
-				return "<li><p>Received: " + date + "</p><div>" + message.content + "</li>";
-			};
+<div>
+	<h3>Messages:</h3>
+	<ol id="messages"></ol>
+</div>
 
-			var socket = new SockJS('/guestbook');
-			var stompClient = Stomp.over(socket);
-            stompClient.connect({ }, function(frame) {
-            	// subscribe to the /topic/entries endpoint which feeds newly added messages
-                stompClient.subscribe('/topic/entries', function(data) {
-                	// when a message is received add it to the end of the list
-                    var body = data.body;
-                    var message = JSON.parse(body);
-                    messageList.append(getMessageString(message));
-                });
-            });
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-            $("#send").on("click", function() {
-            	// send the message
-            	stompClient.send("/app/guestbook", {}, $("#message").val());
-            	$("#message").val("");
-            });
+<script type="text/javascript">
+	$(document).ready(function () {
+		var messageList = $("#messages");
+
+		// defined a connection to a new socket endpoint
+		var socket = new SockJS('/stomp');
+
+		var stompClient = Stomp.over(socket);
+
+		stompClient.connect({}, function (frame) {
+			// subscribe to the /topic/message endpoint
+			stompClient.subscribe("/topic/message", function (data) {
+				var message = JSON.parse(data.body);
+                messageList.empty();
+                $("<img/>", {
+                    src: "data:image/svg+xml;base64," + btoa(message.barcodeContent)
+                }).appendTo($("<li/>").appendTo(messageList));
+
+				//messageList.append("<li>" + message.date + "</li>");
+			});
 		});
-	</script>
+	});
+</script>
 </body>
 </html>
