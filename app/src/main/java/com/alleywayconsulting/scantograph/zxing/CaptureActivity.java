@@ -16,6 +16,7 @@
 
 package com.alleywayconsulting.scantograph.zxing;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -25,13 +26,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.alleywayconsulting.scantograph.ActivityBase;
+import com.alleywayconsulting.scantograph.BluetoothActivityBase;
 import com.alleywayconsulting.scantograph.R;
 import com.alleywayconsulting.scantograph.zxing.camera.CameraManager;
 import com.google.zxing.BarcodeFormat;
@@ -50,7 +49,7 @@ import java.util.Map;
  * @author dswitkin@google.com (Daniel Switkin)
  * @author Sean Owen
  */
-public final class CaptureActivity extends ActivityBase implements SurfaceHolder.Callback {
+public final class CaptureActivity extends BluetoothActivityBase implements SurfaceHolder.Callback {
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
@@ -74,7 +73,6 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
 
-    private BluetoothAdapter mBluetoothAdapter = null;
 
     ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -87,8 +85,6 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
     CameraManager getCameraManager() {
         return cameraManager;
     }
-
-
 
 
     @Override
@@ -105,13 +101,6 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
         ambientLightManager = new AmbientLightManager(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // If the adapter is null, then Bluetooth is not supported
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
@@ -201,11 +190,9 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
         }
 
 
-
         setTitle("Scan Codes");
 
     }
-
 
 
     @Override
@@ -218,7 +205,6 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
         ambientLightManager.stop();
         beepManager.close();
         cameraManager.closeDriver();
-        //historyManager = null; // Keep for onActivityResult
         if (!hasSurface) {
             SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
@@ -231,6 +217,23 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
     protected void onDestroy() {
         inactivityTimer.shutdown();
         super.onDestroy();
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_ENABLE_BT:
+                // When the request to enable Bluetooth returns
+                if (resultCode == Activity.RESULT_OK) {
+                    // Bluetooth is now enabled, so set up a session
+                    super.setupBluetooth();
+                } else {
+                    // User did not enable Bluetooth or an error occurred
+                    Log.d(TAG, "BT not enabled");
+                    Toast.makeText(this, R.string.bt_not_enabled,
+                            Toast.LENGTH_SHORT).show();
+                }
+        }
     }
 
     @Override
@@ -283,7 +286,7 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
 
 
     private void ensureDiscoverable() {
-        if (mBluetoothAdapter.getScanMode() !=
+        if (getBluetoothAdapter().getScanMode() !=
                 BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
             Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
@@ -329,11 +332,13 @@ public final class CaptureActivity extends ActivityBase implements SurfaceHolder
 
         Toast.makeText(getApplicationContext(), "Scanned: " + rawResult.getText(), Toast.LENGTH_SHORT).show();
 
+        //pass on to bluetooth if still connected
+        sendBtMessage(rawResult.getText());
+
         restartPreviewAfterDelay(BULK_MODE_SCAN_DELAY_MS);
 
+
     }
-
-
 
 
     private void initCamera(SurfaceHolder surfaceHolder) {

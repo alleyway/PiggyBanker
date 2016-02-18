@@ -1,5 +1,6 @@
 package com.alleywayconsulting.scantograph;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.view.View;
 import com.alleywayconsulting.scantograph.zxing.CaptureActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void graph(View view) {
-        Intent intent = new Intent(this, GraphActivity.class);
+        Intent intent = new Intent(this, DeviceListActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
     }
+
 }

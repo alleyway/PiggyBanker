@@ -20,8 +20,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/scan_codes"
                 android:onClick="scanCodes"
-                android:layout_margin="30dp"
-                android:padding="8dp"
+                android:layout_margin="10dp"
+                android:padding="20dp"
         />
 
         <Button
@@ -29,9 +29,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/connect_bluetooth"
                 android:onClick="graph"
-                android:layout_margin="30dp"
+                android:layout_margin="10dp"
 
-                android:padding="8dp"
+                android:padding="20dp"
         />
 
     </LinearLayout>

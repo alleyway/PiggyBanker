@@ -27,7 +27,7 @@ public class SimpleJob {
     public void trigger() {
         // sends the message to /topic/message
 
-        int randomNumber = ThreadLocalRandom.current().nextInt(10, 21);
+        int randomNumber = ThreadLocalRandom.current().nextInt(0, 100);
 
         String timeString = String.valueOf(randomNumber);
 

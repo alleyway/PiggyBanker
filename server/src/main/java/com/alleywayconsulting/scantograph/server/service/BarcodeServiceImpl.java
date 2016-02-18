@@ -31,7 +31,7 @@ public class BarcodeServiceImpl implements BarcodeService {
         serialBarcode.setModuleWidth(1.0);
         serialBarcode.setBarHeight(24.0);
         serialBarcode.setFontSize(10.0);
-        serialBarcode.setQuietZone(10.0);
+        //serialBarcode.setQuietZone(10.0);
         serialBarcode.setFontName("OCRA");
         serialBarcode.doQuietZone(true);
         serialBarcode.setMsgPosition(HumanReadablePlacement.HRP_BOTTOM);

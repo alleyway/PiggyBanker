@@ -1,5 +1,6 @@
 package com.alleywayconsulting.scantograph;
 
+import android.bluetooth.BluetoothDevice;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,7 +17,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-public class GraphActivity extends ActivityBase {
+public class GraphActivity extends BluetoothActivityBase {
+
+    public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
     private LineChart mChart;
 
@@ -112,7 +115,14 @@ public class GraphActivity extends ActivityBase {
     protected void onResume() {
         super.onResume();
 
-        feedMultiple();
+        //feedMultiple();
+
+        String address = getIntent().getExtras().getString(EXTRA_DEVICE_ADDRESS);
+
+        BluetoothDevice device = getBluetoothAdapter().getRemoteDevice(address);
+        // Attempt to connect to the device
+        connectDevice(device);
+
     }
 
     protected String[] mMonths = new String[]{
@@ -120,9 +130,18 @@ public class GraphActivity extends ActivityBase {
     };
 
 
+    @Override
+    protected void receiveBtMessage(String message) {
+
+        Float number = Float.valueOf(message);
+
+        addEntry(number);
+
+    }
+
     private int year = 2015;
 
-    private void addEntry() {
+    private void addEntry(Float number) {
 
         LineData data = mChart.getData();
 
@@ -139,7 +158,7 @@ public class GraphActivity extends ActivityBase {
             // add a new x-value first
             data.addXValue(mMonths[data.getXValCount() % 12] + " "
                     + (year + data.getXValCount() / 12));
-            data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
+            data.addEntry(new Entry(number, set.getEntryCount()), 0);
 
 
             // let the chart know it's data has changed
@@ -187,7 +206,7 @@ public class GraphActivity extends ActivityBase {
 
                         @Override
                         public void run() {
-                            addEntry();
+                            addEntry((float) (Math.random() * 40) + 30f);
                         }
                     });
 
