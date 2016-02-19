@@ -9,12 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scan to Graph</title>
+    <title>Piggy Graph</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="bower_components/bootswatch-dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="bower_components/wowjs/css/libs/animate.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
@@ -46,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">Piggy Graph</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,16 +74,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="barcode_container">
-                        <img class="img-responsive" src="img/profile.png" alt="" />
+
+
+                    <div id="coin" class="circle circle-border" style="background-color: #bf8c31; z-index: 51; position: absolute; left:0; right:0; margin: 0 auto; ">
+                        <div class="circle-inner">
+                            <div id="barcode_container">
+                                <!--<img class="img-responsive" src="img/profile.png" alt="" />-->
+                            </div>
+                            <div id="amount">$25</div>
+                        </div>
+                    </div>
+                    <div style="height:500px;">
+                        <div style="height: 220px;">&nbsp;</div>
+
+                    <img id="piggy_bank" src="img/piggy_bank_forefront.png" class="img-responsive" alt="" style="z-index:53; position: absolute; left: 0; right: 0; margin: 0 auto;" />
+                    <img src="img/piggy_bank_back.png" class="img-responsive" alt="" style="z-index:50; position: absolute; left: 0; right: 0; margin: 0 auto;" />
                     </div>
 
-                    <img src="img/piggy_bank.png" class="img-responsive" alt="" />
-                    <div class="intro-text">
-                        <span class="name">Start Bootstrap</span>
-                        <hr class="star-light">
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
-                    </div>
+                    <div style="height: 220px;">&nbsp;</div>
+                    <!--<div class="intro-text">-->
+                        <!--<span class="name">Start Bootstrap</span>-->
+                        <!--<hr class="star-light">-->
+                        <!--<span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -533,7 +544,6 @@
     <script src="bower_components/jquery.easing/js/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
-    <script src="bower_components/wowjs/dist/wow.min.js"></script>
 
     <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
     <script src="bower_components/bower-sockjs-client/sockjs.min.js"></script>

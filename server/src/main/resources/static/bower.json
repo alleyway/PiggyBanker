@@ -7,8 +7,7 @@
     "bower-sockjs-client": "0.3.4",
     "stomp-websocket": "2.3.4",
     "font-awesome": "4.2.0",
-    "jquery.easing": "~1.3.1",
-    "wowjs": "~1.1.2"
+    "jquery.easing": "~1.3.1"
   },
   "private": true
 }
