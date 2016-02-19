@@ -13,13 +13,13 @@ public class MessageDTO implements Serializable {
 
     public Date date;
 
-    public String number;
+    public String amount;
 
     public String barcodeContent;
 
-    public MessageDTO(String value, String barcodeContent) {
+    public MessageDTO(String amount, String barcodeContent) {
         this.date = Calendar.getInstance().getTime();
-        this.number = value;
+        this.amount = amount;
         this.barcodeContent = barcodeContent;
     }
 

@@ -21,20 +21,22 @@ public class SimpleJob {
     @Autowired
     private BarcodeService barcodeService;
 
+    private String[] denominations = new String[] {"1", "5", "10", "20", "25", "50", "75", "100"};
+
 
     // this will send a message to an endpoint on which a client can subscribe
     @Scheduled(fixedRate = 3000)
     public void trigger() {
         // sends the message to /topic/message
 
-        int randomNumber = ThreadLocalRandom.current().nextInt(0, 100);
+        int randomNumber = ThreadLocalRandom.current().nextInt(0, denominations.length);
 
-        String timeString = String.valueOf(randomNumber);
+        String amount = denominations[randomNumber];
 
         try {
 
-            String barcodeXML = barcodeService.createSVGBarcode(timeString);
-            MessageDTO message = new MessageDTO(timeString, barcodeXML);
+            String barcodeXML = barcodeService.createSVGBarcode(amount);
+            MessageDTO message = new MessageDTO(amount, barcodeXML);
             template.convertAndSend("/topic/message", message);
 
         } catch (Exception e) {

@@ -1,6 +1,8 @@
 $(function () {
     var container = $("#barcode_container");
 
+    var amountDiv = $("#amount");
+
     var coinOrigWidth = $("#coin").width();
 
     // defined a connection to a new socket endpoint
@@ -15,8 +17,8 @@ $(function () {
             container.empty();
             $("<img/>", {
                 src: "data:image/svg+xml;base64," + btoa(message.barcodeContent)
-
             }).appendTo(container);
+            amountDiv[0].innerHTML = "$" + message.amount;
             animateIn();
         });
     });
