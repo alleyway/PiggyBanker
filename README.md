@@ -1,6 +1,15 @@
-# ScantoGraph
+# PiggyGraph
 
+Piggy graph is a an open source project which demonstrates the following frameworks:
 
+ - Gradle
+ - Spring Boot
+ - Responsive Web (Twitter bootstrap)
+ - Web Sockets
+ - Android
+ - Bluetooth
+ - Barcode Scanning
+ - Graphing Data Points
 
 
 ## Build Instructions
