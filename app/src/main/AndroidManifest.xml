@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.alleywayconsulting.scantograph">
+          package="com.alleywayconsulting.piggygraph">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme"
     >
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.alleywayconsulting.piggygraph.MainActivity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-                android:name=".zxing.CaptureActivity"
+                android:name="com.alleywayconsulting.piggygraph.zxing.CaptureActivity"
                 android:clearTaskOnLaunch="true"
                 android:label="@string/title_activity_capture"
                 android:screenOrientation="portrait"
@@ -35,18 +35,18 @@
         </activity>
 
         <activity
-                android:name=".zxing.PreferencesActivity"
+                android:name="com.alleywayconsulting.piggygraph.zxing.PreferencesActivity"
                 android:label="@string/preferences_name"
                 android:screenOrientation="portrait"
                 android:stateNotNeeded="true"/>
 
         <activity
-                android:name=".GraphActivity"
+                android:name="com.alleywayconsulting.piggygraph.GraphActivity"
                 android:label="@string/title_activity_graph">
         </activity>
 
         <activity
-                android:name=".DeviceListActivity"
+                android:name="com.alleywayconsulting.piggygraph.DeviceListActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/select_device"
                 />
