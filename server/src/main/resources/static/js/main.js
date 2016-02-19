@@ -24,7 +24,6 @@ $(function () {
     });
 
 
-
     function animateIn() {
         var coin = $("#coin");
         var left = -.85 * $(window).width();
@@ -44,7 +43,7 @@ $(function () {
                 });
             },
             complete: function() {
-                animateOut();
+                window.setTimeout(animateOut, 1000);
             }
         });
     }

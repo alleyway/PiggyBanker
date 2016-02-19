@@ -25,7 +25,7 @@ public class SimpleJob {
 
 
     // this will send a message to an endpoint on which a client can subscribe
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 5000)
     public void trigger() {
         // sends the message to /topic/message
 
