@@ -1,4 +1,6 @@
 $(function () {
+    var sessionId;
+
     var container = $("#barcode_container");
 
     var amountDiv = $("#amount");
@@ -14,6 +16,11 @@ $(function () {
         // subscribe to the /topic/message endpoint
         stompClient.subscribe("/topic/message", function (data) {
             var message = JSON.parse(data.body);
+            if (message.gameId == sessionId) {
+                console.log("we're starting a new game, set up UI..");
+                //TODO: reset UI
+            }
+            if (message.sessionId != sessionId) return;
             container.empty();
             $("<img/>", {
                 src: "data:image/svg+xml;base64," + btoa(message.barcodeContent)
@@ -23,6 +30,24 @@ $(function () {
         });
     });
 
+    resetStartCode();
+
+    function resetStartCode() {
+        var startCodeContainer = $("#startcode_container");
+
+        startCodeContainer.empty();
+
+        sessionId = new Date().getTime();
+        //create a new session by using the time, hopefully no collisions
+
+        $("<img/>", {
+            src: "/api/game/startcode/" + sessionId,
+            class: "img-responsive"
+        }).appendTo(startCodeContainer);
+
+        startCodeContainer.attr("href", "/api/game/start/" + sessionId);
+
+    }
 
     function animateIn() {
         var coin = $("#coin");
@@ -54,7 +79,6 @@ $(function () {
 
         //ratio of pig hole to pig image width
         var slotWidth = (150/785) * $("#piggy_bank").width() * .9;
-
 
         coin.css({top: top, width: coinOrigWidth}).animate({"top": "250px", width: slotWidth}, {
             duration: 700,

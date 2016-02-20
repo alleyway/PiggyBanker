@@ -9,15 +9,18 @@ import java.util.Date;
  * Copyright (c) Alleyway Consulting, LLC
  */
 
-public class MessageDTO implements Serializable {
+public class CoinDTO implements Serializable {
 
     public Date date;
 
-    public String amount;
+    public Integer amount;
 
     public String barcodeContent;
 
-    public MessageDTO(String amount, String barcodeContent) {
+    public Long sessionId;
+
+    public CoinDTO(Long sessionId, Integer amount, String barcodeContent) {
+        this.sessionId = sessionId;
         this.date = Calendar.getInstance().getTime();
         this.amount = amount;
         this.barcodeContent = barcodeContent;

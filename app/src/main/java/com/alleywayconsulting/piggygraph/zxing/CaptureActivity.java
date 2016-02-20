@@ -33,6 +33,12 @@ import android.widget.Toast;
 import com.alleywayconsulting.piggygraph.BluetoothActivityBase;
 import com.alleywayconsulting.piggygraph.R;
 import com.alleywayconsulting.piggygraph.zxing.camera.CameraManager;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -72,7 +78,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
     private InactivityTimer inactivityTimer;
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
-
+    private RequestQueue queue;
 
     ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -101,6 +107,8 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         ambientLightManager = new AmbientLightManager(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        queue = Volley.newRequestQueue(this);
     }
 
     @Override
@@ -328,15 +336,33 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
         beepManager.playBeepSoundAndVibrate();
 
-        Log.i(TAG, "scanned: " + rawResult.getText());
+        String scannedText = rawResult.getText();
+        Log.i(TAG, "scanned: " + scannedText);
 
-        Toast.makeText(getApplicationContext(), "Scanned: " + rawResult.getText(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Scanned: " + scannedText, Toast.LENGTH_SHORT).show();
 
-        //pass on to bluetooth if still connected
-        sendBtMessage(rawResult.getText());
+        if (scannedText.toLowerCase().startsWith("http")) {
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, scannedText,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getApplicationContext(), "Server: " + response, Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
+                }
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+        } else {
+            //pass on to bluetooth if still connected
+            sendBtMessage(scannedText);
+        }
 
         restartPreviewAfterDelay(BULK_MODE_SCAN_DELAY_MS);
-
 
     }
 

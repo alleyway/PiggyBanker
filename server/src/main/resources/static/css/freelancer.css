@@ -435,3 +435,16 @@ footer .footer-below {
   margin-top: 10%;
   margin-bottom: 6px;
 }
+#startcode_container {
+  margin: 10px;
+}
+.scanme {
+  border-radius: 22px;
+  -moz-border-radius: 22px;
+  -webkit-border-radius: 22px;
+  border: 2px solid #2c3e50;
+  background-color: white;
+  padding: 20px;
+  color: black;
+  font-weight: bold;
+}

@@ -1,2 +1,2 @@
-include ':app'
-include ':server'
+//include ':app'
+//include ':server'
