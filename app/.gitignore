@@ -7,3 +7,6 @@
 /build
 /captures
 gradle.properties
+app.keystore
+keys.json
+version.properties

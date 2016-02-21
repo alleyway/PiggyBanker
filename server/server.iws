@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cc98767-d800-410d-b419-9e61df80040b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/.gitignore" afterPath="$PROJECT_DIR$/../app/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/build.gradle" afterPath="$PROJECT_DIR$/../app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/gradle.properties" afterPath="$PROJECT_DIR$/../app/gradle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.iws" afterPath="$PROJECT_DIR$/server.iws" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1692,7 +1688,7 @@
     <option name="totallyTimeSpent" value="25435000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="832" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="832" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
