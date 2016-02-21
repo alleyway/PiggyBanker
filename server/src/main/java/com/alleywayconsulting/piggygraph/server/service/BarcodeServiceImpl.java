@@ -1,16 +1,15 @@
 package com.alleywayconsulting.piggygraph.server.service;
 
-import org.krysalis.barcode4j.HumanReadablePlacement;
-import org.krysalis.barcode4j.impl.datamatrix.DataMatrixBean;
-import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import org.jfree.graphics2d.svg.SVGGraphics2D;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
+import java.awt.*;
+import java.util.EnumMap;
 
 /**
  * Created by Michael Lake on 2/16/16.
@@ -20,40 +19,41 @@ import java.io.StringWriter;
 @Service
 public class BarcodeServiceImpl implements BarcodeService {
 
+    private static SVGGraphics2D toSvgDocument(BitMatrix matrix, MatrixToImageConfig config) {
+        int width = matrix.getWidth();
+        int height = matrix.getHeight();
+
+        SVGGraphics2D svgGraphics = new SVGGraphics2D(width, height);
+
+        // just make it transparent
+//        svgGraphics.setColor(new Color(config.getPixelOffColor()));
+//        svgGraphics.fillRect(0, 0, width, height);
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (matrix.get(x, y)) {
+                    svgGraphics.setColor(new Color(config.getPixelOnColor()));
+                    svgGraphics.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+
+        return svgGraphics;
+    }
 
     @Override
     public String createSVGBarcode(String data) throws Exception {
 
+        QRCodeWriter writer = new QRCodeWriter();
 
-        DataMatrixBean serialBarcode = new DataMatrixBean();
+        EnumMap<EncodeHintType, Object> hints = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        hints.put(EncodeHintType.MARGIN, 1);
 
-        serialBarcode.setModuleWidth(1.0);
-        serialBarcode.setBarHeight(24.0);
-        serialBarcode.setFontSize(10.0);
-        //serialBarcode.setQuietZone(10.0);
-        serialBarcode.setFontName("OCRA");
-        serialBarcode.doQuietZone(true);
-        serialBarcode.setMsgPosition(HumanReadablePlacement.HRP_BOTTOM);
+        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 150, 150, hints);
 
+        SVGGraphics2D svgDocument = toSvgDocument(bitMatrix, new MatrixToImageConfig());
 
-        SVGCanvasProvider canvas = new SVGCanvasProvider(false, 0);
-
-        serialBarcode.generateBarcode(canvas, data);
-
-
-        org.w3c.dom.DocumentFragment frag = canvas.getDOMFragment();
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Transformer trans = factory.newTransformer();
-        Source src = new DOMSource(frag);
-//        Result res = new StreamResult("code128.svg");
-//        trans.transform(src, res);
-
-        StringWriter writer = new StringWriter();
-        StreamResult result = new StreamResult(writer);
-
-        trans.transform(src, result);
-
-
-        return writer.toString();
+        return svgDocument.getSVGDocument();
     }
 }

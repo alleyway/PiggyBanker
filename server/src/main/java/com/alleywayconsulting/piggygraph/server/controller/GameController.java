@@ -56,7 +56,8 @@ public class GameController {
 
             StringBuffer sb = new StringBuffer();
             sb.append("http://");
-            sb.append(InetAddress.getLocalHost().getHostAddress());
+            //sb.append(InetAddress.getLocalHost().getHostAddress());
+            sb.append("alleyway.duckdns.org");
             sb.append(":8080/api/game/start/");
             sb.append(sessionId);
 

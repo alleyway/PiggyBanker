@@ -19,6 +19,10 @@ $(function () {
             if (message.gameId == sessionId) {
                 console.log("we're starting a new game, set up UI..");
                 //TODO: reset UI
+                $("#instructions_row").fadeOut(1000, function(){
+                    $("#pig_row").fadeIn(500);
+                });
+
             }
             if (message.sessionId != sessionId) return;
             container.empty();

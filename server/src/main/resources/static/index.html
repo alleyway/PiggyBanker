@@ -75,12 +75,12 @@
 <header>
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-offset-2 col-md-5">
+        <div class="row" id="instructions_row" style="height: 720px;">
+            <div class="col-md-offset-2 col-md-4">
                 Download the app
                 and scan this barcode to get started:
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="scanme">
                     Scan to start a new session: <br/>
                     <a id="startcode_container" target="_blank">
@@ -90,12 +90,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="pig_row" style="display: none">
             <div class="col-lg-12">
-
-
                 <div id="coin" class="circle circle-border"
-                     style="background-color: #bf8c31; z-index: 51; position: absolute; left:0; right:0; margin: 0 auto; opacity: 0;">
+                     style="background-color: #bf8c31; z-index: 51; position: absolute; left:0; right:0; margin: 0 auto; opacity: 0; width: 196px; ">
                     <div class="circle-inner">
                         <div id="barcode_container">
                             <!--<img class="img-responsive" src="img/profile.png" alt="" />-->
@@ -113,11 +111,6 @@
                 </div>
 
                 <div style="height: 220px;">&nbsp;</div>
-                <!--<div class="intro-text">-->
-                <!--<span class="name">Start Bootstrap</span>-->
-                <!--<hr class="star-light">-->
-                <!--<span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
