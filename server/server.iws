@@ -2,16 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cc98767-d800-410d-b419-9e61df80040b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/img/piggy_bank_back.png" afterPath="$PROJECT_DIR$/src/main/resources/static/img/piggy_bank_back.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/img/piggy_bank_forefront.png" afterPath="$PROJECT_DIR$/src/main/resources/static/img/piggy_bank_forefront.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/BluetoothService.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/BluetoothService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.ipr" afterPath="$PROJECT_DIR$/server.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/btn_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_launcher_piggy_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_scan_code.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/btn_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_launcher_piggy_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_scan_code.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/btn_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_launcher_piggy_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_scan_code.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/btn_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_launcher_piggy_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_scan_code.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/btn_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_launcher_piggy_graph.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_scan_code.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/MainActivity.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/../app/src/main/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/../app/src/main/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.iws" afterPath="$PROJECT_DIR$/server.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/controller/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/controller/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/BarcodeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/BarcodeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,7 +128,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,7 +166,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1678,12 +1709,19 @@
       <updated>1455900738115</updated>
       <workItem from="1455900738994" duration="9842000" />
       <workItem from="1455973402762" duration="9386000" />
-      <workItem from="1456071673547" duration="1409000" />
+      <workItem from="1456071673547" duration="2801000" />
     </task>
+    <task id="LOCAL-00001" summary="Switching to QR codes">
+      <created>1456073157524</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1456073157524</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20637000" />
+    <option name="totallyTimeSpent" value="22029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="832" extended-state="6" />
@@ -1730,6 +1768,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Switching to QR codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Switching to QR codes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1760,7 +1801,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1790,7 +1833,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1849,7 +1894,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1901,6 +1948,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1908,7 +1956,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1954,6 +2004,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1990,7 +2041,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1998,7 +2051,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

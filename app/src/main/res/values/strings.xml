@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Piggy Graph</string>
-    <string name="scan_codes">Scan Codes &amp; Host Bluetooth</string>
-    <string name="connect_bluetooth">Connect Bluetooth &amp; Graph</string>
+    <string name="scan_codes">Scan Codes \n&amp; Host Bluetooth</string>
+    <string name="connect_bluetooth">Connect Bluetooth \n&amp; Graph</string>
 
     <string name="title_activity_capture">Capture Activity</string>
 
@@ -140,8 +140,8 @@
     <string name="action_settings">Settings</string>
     <string name="make_discoverable">Make Discoverable</string>
     <string name="bt_not_enabled">Bluetooth Not Enabled</string>
-    <string name="scanning">scanning for devices...</string>
-    <string name="select_device">select a device to connect</string>
+    <string name="scanning">Scanning for devices…</string>
+    <string name="select_device">Select a device to connect</string>
     <string name="title_paired_devices">Paired Devices</string>
     <string name="title_other_devices">Other Available Devices</string>
     <string name="button_scan">Scan for Devices</string>
