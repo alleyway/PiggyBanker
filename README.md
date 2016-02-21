@@ -10,7 +10,7 @@ Piggy graph is a an open source project which demonstrates the following framewo
  - Bluetooth
  - Barcode Scanning
  - Graphing Data Points
-
+ - Continuous Delivery
 
 ## Build Instructions
 
