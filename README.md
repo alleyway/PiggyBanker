@@ -19,12 +19,32 @@ Piggy graph is a an open source project which demonstrates the following framewo
 
     ./gradlew build
 
+## Deployment Instructions
+
+ Put **app.keystore** in app/ (not committed for security reasons)
+
+ Update **app/gradle.properties** to include password:
+
+    storePassword=
+    keyPassword=
+
+At this point you should be able to build a release APK for deployment via the web console at https://play.google.com/apps/publish/
+
+    app$ ../gradlew clean assembleRelease
+
+### Continuous Deployment
+
+ Put Google Deployment credentials - **keys.json** - in /app
+
+    app$ ../gradlew clean publishApkRelease
+
+
 
 ## Development Workflow
 
 To enable loading edits to resources without restart, run with gradle (outside of IntellIJ)
 
-../gradlew bootRun
+    server$ ../gradlew bootRun
 
 ### Tools
 
