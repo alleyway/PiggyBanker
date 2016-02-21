@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cc98767-d800-410d-b419-9e61df80040b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/.gitignore" afterPath="$PROJECT_DIR$/../app/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/build.gradle" afterPath="$PROJECT_DIR$/../app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/GraphActivity.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/GraphActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/layout/activity_graph.xml" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/activity_graph.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.iws" afterPath="$PROJECT_DIR$/server.iws" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />

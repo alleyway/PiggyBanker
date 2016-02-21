@@ -33,7 +33,7 @@ android {
         targetSdkVersion 23
         versionCode code
         versionName "1.0.0"
-        archivesBaseName = "PiggyGraph-$versionName-b$code"
+//        archivesBaseName = "PiggyGraph-$versionName-b$code"
 
     }
     signingConfigs {
