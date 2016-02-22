@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cc98767-d800-410d-b419-9e61df80040b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/piggy_bank_forefront_blink.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/deploy_to_play.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/deploy_to_server.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/exceptions/AccountNotFoundException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/exceptions/MaxDepositsException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/Constants.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/GraphActivity.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/GraphActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/zxing/CaptureActivity.java" afterPath="$PROJECT_DIR$/../app/src/main/java/com/alleywayconsulting/piggygraph/zxing/CaptureActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy_to_server.sh" afterPath="$PROJECT_DIR$/deploy_to_server.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.iws" afterPath="$PROJECT_DIR$/server.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/controller/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/controller/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/dto/GameDTO.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/dto/GameDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/AccountService.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/AccountService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/AccountServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/AccountServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/SimpleJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/alleywayconsulting/piggygraph/server/service/SimpleJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/freelancer.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/freelancer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -196,7 +180,7 @@
         <entry file="file://$PROJECT_DIR$/deploy_to_server.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.06726457">
-              <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+              <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -1473,7 +1457,7 @@
       <workItem from="1455900738994" duration="9842000" />
       <workItem from="1455973402762" duration="9386000" />
       <workItem from="1456071673547" duration="9494000" />
-      <workItem from="1456146828266" duration="4179000" />
+      <workItem from="1456146828266" duration="5087000" />
     </task>
     <task id="LOCAL-00001" summary="Switching to QR codes">
       <created>1456073157524</created>
@@ -1481,11 +1465,17 @@
       <option name="project" value="LOCAL" />
       <updated>1456073157524</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Alpha state">
+      <created>1456158667474</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1456158667474</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32901000" />
+    <option name="totallyTimeSpent" value="33809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="832" extended-state="6" />
@@ -1534,7 +1524,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Switching to QR codes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switching to QR codes" />
+    <MESSAGE value="Alpha state" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alpha state" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1980,7 +1971,7 @@
     <entry file="file://$PROJECT_DIR$/deploy_to_server.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06726457">
-          <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+          <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
           <folding />
         </state>
       </provider>
