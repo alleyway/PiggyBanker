@@ -31,6 +31,7 @@ import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alleywayconsulting.piggygraph.BluetoothActivityBase;
+import com.alleywayconsulting.piggygraph.Constants;
 import com.alleywayconsulting.piggygraph.R;
 import com.alleywayconsulting.piggygraph.zxing.camera.CameraManager;
 import com.android.volley.Request;
@@ -44,6 +45,8 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.Map;
 
@@ -79,6 +82,9 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
     private RequestQueue queue;
+
+    private String mSessionId = null;
+    private String mBaseUrl = null;
 
     ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -337,16 +343,27 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         beepManager.playBeepSoundAndVibrate();
 
         String scannedText = rawResult.getText();
-        Log.i(TAG, "scanned: " + scannedText);
 
+
+        try {
+            URL url = new URL(scannedText);
+
+            mBaseUrl = url.getProtocol() + "://" +url.getAuthority();
+            Log.i(TAG, "scanned: " + scannedText);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         //Toast.makeText(getApplicationContext(), "Scanned: " + scannedText, Toast.LENGTH_SHORT).show();
 
         if (scannedText.toLowerCase().startsWith("http")) {
+
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, scannedText,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            mSessionId = response;
                             Toast.makeText(getApplicationContext(), "Server: " + response, Toast.LENGTH_SHORT).show();
                         }
                     }, new Response.ErrorListener() {
@@ -357,8 +374,27 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
             });
             // Add the request to the RequestQueue.
             queue.add(stringRequest);
+            sendBtMessage(Constants.GAME_RESET);
         } else {
             //pass on to bluetooth if still connected
+
+            String nextCoinUrl = mBaseUrl + "/api/game/nextcoin/" + mSessionId;
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, nextCoinUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
+                }
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+
             sendBtMessage(scannedText);
         }
 

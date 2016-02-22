@@ -5,6 +5,8 @@ $(function () {
 
     var amountDiv = $("#amount");
 
+    var blinkImg = $("#piggy_blink");
+
     var coinOrigWidth = $("#coin").width();
 
     // defined a connection to a new socket endpoint
@@ -22,7 +24,20 @@ $(function () {
                 $("#instructions_row").fadeOut(1000, function(){
                     $("#pig_row").fadeIn(500);
                 });
+            }
 
+            if (message.status == "RESET") {
+                animateOut(false);
+                window.alert("Game over, Great job!");
+                resetStartCode();
+                $("#pig_row").fadeOut(1000, function(){
+                    $("#instructions_row").fadeIn(500);
+                });
+
+            }
+
+            if (message.status == "HEARTBEAT") {
+                blink();
             }
             if (message.sessionId != sessionId) return;
             container.empty();
@@ -30,7 +45,8 @@ $(function () {
                 src: "data:image/svg+xml;base64," + btoa(message.barcodeContent)
             }).appendTo(container);
             amountDiv[0].innerHTML = "$" + message.amount;
-            animateIn();
+
+            animateOut(true);
         });
     });
 
@@ -72,12 +88,12 @@ $(function () {
                 });
             },
             complete: function() {
-                window.setTimeout(animateOut, 1000);
+                //window.setTimeout(animateOut, 1000);
             }
         });
     }
 
-    function animateOut() {
+    function animateOut(thenAnimateIn) {
         var coin = $("#coin");
         var top = 0;
 
@@ -89,8 +105,16 @@ $(function () {
             easing: "easeInOutExpo",
             complete: function() {
                 $(this).css( {opacity: 0.0, top: 0, width: coinOrigWidth});
+                if (thenAnimateIn) animateIn();
             }
         });
+    }
+
+    function blink() {
+        blinkImg.css({opacity: 1});
+        setTimeout(function(){
+            blinkImg.css({opacity:0});
+        }, 200);
     }
 });
 

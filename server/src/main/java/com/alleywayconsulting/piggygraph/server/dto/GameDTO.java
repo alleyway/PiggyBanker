@@ -8,9 +8,12 @@ import java.io.Serializable;
  */
 public class GameDTO implements Serializable {
 
-    public GameDTO(Long sessionId) {
+    public GameDTO(Long sessionId, String status) {
         this.gameId = sessionId;
+        this.status = status;
     }
+
+    public String status;
 
     public Long gameId;
 }

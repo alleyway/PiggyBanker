@@ -1,6 +1,10 @@
 package com.alleywayconsulting.piggygraph.server.controller;
 
+import com.alleywayconsulting.piggygraph.server.dto.CoinDTO;
 import com.alleywayconsulting.piggygraph.server.dto.GameDTO;
+import com.alleywayconsulting.piggygraph.server.exceptions.AccountNotFoundException;
+import com.alleywayconsulting.piggygraph.server.exceptions.MaxDepositsException;
+import com.alleywayconsulting.piggygraph.server.model.Deposit;
 import com.alleywayconsulting.piggygraph.server.service.BarcodeService;
 import com.alleywayconsulting.piggygraph.server.service.AccountService;
 import org.slf4j.Logger;
@@ -14,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.InetAddress;
-import java.util.Arrays;
+import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Michael Lake on 2/19/16.
@@ -32,20 +36,22 @@ public class GameController {
     BarcodeService barcodeService;
 
     @Autowired
-    AccountService gameService;
+    AccountService accountService;
 
     @Autowired
     private SimpMessagingTemplate template;
 
     @RequestMapping(value = "/start/{sessionId}", method = RequestMethod.GET)
-    public void start(HttpServletResponse response, @PathVariable Long sessionId) {
+    public void start(HttpServletResponse response, @PathVariable Long sessionId) throws Exception {
         LOG.info("Start game");
 
-        GameDTO gameDTO = new GameDTO(sessionId);
+        GameDTO gameDTO = new GameDTO(sessionId, "START");
 
-        gameService.createAccount(sessionId);
+        accountService.createAccount(sessionId);
 
         template.convertAndSend("/topic/message", gameDTO);
+        response.getWriter().print(sessionId);
+        sendNextCoin(sessionId);
     }
 
     @RequestMapping(value = "/startcode/{sessionId}", method = RequestMethod.GET, produces = "image/svg+xml")
@@ -57,8 +63,8 @@ public class GameController {
             StringBuffer sb = new StringBuffer();
             sb.append("http://");
             //sb.append(InetAddress.getLocalHost().getHostAddress());
-            sb.append("alleyway.duckdns.org");
-            sb.append(":8080/api/game/start/");
+            sb.append("zanzibar.alleywayconsulting.com");
+            sb.append(":8089/api/game/start/");
             sb.append(sessionId);
 
             String code = barcodeService.createSVGBarcode(sb.toString());
@@ -68,4 +74,33 @@ public class GameController {
             LOG.error("Unable to create SGV", e);
         }
     }
+
+    @RequestMapping(value = "/nextcoin/{sessionId}", method = RequestMethod.GET)
+    public void startCode(HttpServletResponse response, @PathVariable Long sessionId) throws Exception {
+
+        sendNextCoin(sessionId);
+
+    }
+
+    private void sendNextCoin(Long sessionId) throws Exception {
+        int randomNumber = ThreadLocalRandom.current().nextInt(0, AccountService.DENOMINATIONS.length);
+        Integer amount = AccountService.DENOMINATIONS[randomNumber];
+        Deposit deposit = new Deposit();
+        deposit.setAmount(amount);
+        try {
+            accountService.depositToAccount(sessionId, deposit);
+            String barcodeXML = barcodeService.createSVGBarcode(String.valueOf(amount));
+            CoinDTO coin = new CoinDTO(sessionId, amount, barcodeXML);
+            template.convertAndSend("/topic/message", coin);
+
+        } catch (AccountNotFoundException e) {
+            GameDTO gameDTO = new GameDTO(sessionId, "RESET");
+            template.convertAndSend("/topic/message", gameDTO);
+        } catch (MaxDepositsException e) {
+            GameDTO gameDTO = new GameDTO(sessionId, "RESET");
+            template.convertAndSend("/topic/message", gameDTO);
+        }
+    }
+
+
 }

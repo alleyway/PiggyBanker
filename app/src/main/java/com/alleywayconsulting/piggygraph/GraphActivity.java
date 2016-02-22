@@ -1,5 +1,6 @@
 package com.alleywayconsulting.piggygraph;
 
+import android.bluetooth.BluetoothDevice;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -130,13 +131,13 @@ public class GraphActivity extends BluetoothActivityBase {
     protected void onResume() {
         super.onResume();
 
-        feedMultiple();
+    //    feedMultiple();
 
-//        String address = getIntent().getExtras().getString(EXTRA_DEVICE_ADDRESS);
-//
-//        BluetoothDevice device = getBluetoothAdapter().getRemoteDevice(address);
-//        // Attempt to connect to the device
-//        connectDevice(device);
+        String address = getIntent().getExtras().getString(EXTRA_DEVICE_ADDRESS);
+
+        BluetoothDevice device = getBluetoothAdapter().getRemoteDevice(address);
+        // Attempt to connect to the device
+        connectDevice(device);
 
     }
 
@@ -146,9 +147,13 @@ public class GraphActivity extends BluetoothActivityBase {
     @Override
     protected void receiveBtMessage(String message) {
 
-        Long number = Long.valueOf(message);
-
-        addEntry(number);
+        if (Constants.GAME_RESET.equals(message)){
+            mChart.getData().clearValues();
+            mChart.notifyDataSetChanged();
+        } else {
+            Long number = Long.valueOf(message);
+            addEntry(number);
+        }
 
     }
 
