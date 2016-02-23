@@ -10,6 +10,7 @@ import com.alleywayconsulting.piggygraph.server.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -41,6 +43,10 @@ public class GameController {
     @Autowired
     private SimpMessagingTemplate template;
 
+    @Value("${host.address}")
+    private String hostAddress;
+
+
     @RequestMapping(value = "/start/{sessionId}", method = RequestMethod.GET)
     public void start(HttpServletResponse response, @PathVariable Long sessionId) throws Exception {
         LOG.info("Start game");
@@ -60,10 +66,15 @@ public class GameController {
         try {
             response.setHeader("Content-Type", "image/svg+xml");
 
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append("http://");
-            //sb.append(InetAddress.getLocalHost().getHostAddress());
-            sb.append("zanzibar.alleywayconsulting.com");
+            if (hostAddress.equals("auto")) {
+                sb.append(InetAddress.getLocalHost().getHostAddress());
+
+            } else {
+                sb.append(hostAddress);
+            }
+
             sb.append(":8089/api/game/start/");
             sb.append(sessionId);
 

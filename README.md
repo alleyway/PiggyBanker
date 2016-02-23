@@ -19,6 +19,14 @@ Piggy graph is a an open source project which demonstrates the following framewo
 
     ./gradlew build
 
+## Run Instructions
+
+    To run locally, the app must be on the same subnet as the host, or the host be publicly accessable.
+
+    Note: You must execute with Java 8
+
+    server$ java -jar -Dhost.address=192.168.0.99 build/libs/piggygraph-server-0.0.1-SNAPSHOT.jar
+
 ## Deployment Instructions
 
  Put **app.keystore** in app/ (not committed for security reasons)

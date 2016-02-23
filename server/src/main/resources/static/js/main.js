@@ -1,13 +1,15 @@
 $(function () {
     var sessionId;
 
-    var container = $("#barcode_container");
+    var coin = $("#coin");
+
+    var codeContainer = $("#barcode_container");
 
     var amountDiv = $("#amount");
 
     var blinkImg = $("#piggy_blink");
 
-    var coinOrigWidth = $("#coin").width();
+    var coinOrigWidth = coin.width();
 
     // defined a connection to a new socket endpoint
     var socket = new SockJS('/stomp');
@@ -20,7 +22,7 @@ $(function () {
             var message = JSON.parse(data.body);
             if (message.gameId == sessionId) {
                 console.log("we're starting a new game, set up UI..");
-                //TODO: reset UI
+
                 $("#instructions_row").fadeOut(1000, function(){
                     $("#pig_row").fadeIn(500);
                 });
@@ -37,16 +39,11 @@ $(function () {
             }
 
             if (message.status == "HEARTBEAT") {
-                blink();
+                blink(2);
             }
-            if (message.sessionId != sessionId) return;
-            container.empty();
-            $("<img/>", {
-                src: "data:image/svg+xml;base64," + btoa(message.barcodeContent)
-            }).appendTo(container);
-            amountDiv[0].innerHTML = "$" + message.amount;
 
-            animateOut(true);
+            if (message.sessionId != sessionId) return;
+            animateOut(true, message);
         });
     });
 
@@ -70,7 +67,7 @@ $(function () {
     }
 
     function animateIn() {
-        var coin = $("#coin");
+
         var left = -.85 * $(window).width();
 
         console.log("left: " + left);
@@ -86,15 +83,12 @@ $(function () {
                     "-ms-transform": "rotate(" + angle + "deg)",
                     "transform": "rotate(" + angle + "deg)"
                 });
-            },
-            complete: function() {
-                //window.setTimeout(animateOut, 1000);
             }
         });
     }
 
-    function animateOut(thenAnimateIn) {
-        var coin = $("#coin");
+    function animateOut(thenAnimateIn, nextCoinPayload) {
+
         var top = 0;
 
         //ratio of pig hole to pig image width
@@ -105,16 +99,28 @@ $(function () {
             easing: "easeInOutExpo",
             complete: function() {
                 $(this).css( {opacity: 0.0, top: 0, width: coinOrigWidth});
-                if (thenAnimateIn) animateIn();
+                if (thenAnimateIn){
+                    codeContainer.empty();
+                    $("<img/>", {
+                        src: "data:image/svg+xml;base64," + btoa(nextCoinPayload.barcodeContent)
+                    }).appendTo(codeContainer);
+                    amountDiv[0].innerHTML = "$" + nextCoinPayload.amount;
+                    animateIn();
+                }
             }
         });
     }
 
-    function blink() {
+    // Use of recursion
+    function blink(timesToBlink) {
+        if (timesToBlink == 0) return;
         blinkImg.css({opacity: 1});
         setTimeout(function(){
             blinkImg.css({opacity:0});
-        }, 200);
+            setTimeout(function(){
+                blink(--timesToBlink);
+            },400);
+        }, 300);
     }
 });
 
