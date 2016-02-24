@@ -1,4 +1,4 @@
-package com.alleywayconsulting.piggygraph;
+package com.alleywayconsulting.piggybanker;
 
 import org.junit.Test;
 

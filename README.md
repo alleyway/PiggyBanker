@@ -1,6 +1,6 @@
-# PiggyGraph
+# Piggy Banker
 
-Piggy graph is a an open source project which demonstrates the following elements:
+Piggy banker is a an open source project which demonstrates the following elements:
 
  - Gradle
  - Spring Boot

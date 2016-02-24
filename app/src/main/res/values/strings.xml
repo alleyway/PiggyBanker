@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Piggy Graph</string>
+    <string name="app_name">Piggy Banker</string>
     <string name="scan_codes">Scan Codes \n&amp; Host Bluetooth</string>
     <string name="connect_bluetooth">Connect Bluetooth \n&amp; Graph</string>
 

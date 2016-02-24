@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.alleywayconsulting.piggygraph.GraphActivity"
+                tools:context="com.alleywayconsulting.piggybanker.GraphActivity"
                 android:background="@color/pg_jade"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
