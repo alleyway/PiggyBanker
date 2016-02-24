@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cc98767-d800-410d-b419-9e61df80040b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/architecture.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_graph.png" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-hdpi/ic_graph.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_graph.png" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-mdpi/ic_graph.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_graph.png" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xhdpi/ic_graph.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_graph.png" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxhdpi/ic_graph.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_graph.png" afterPath="$PROJECT_DIR$/../app/src/main/res/drawable-xxxhdpi/ic_graph.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.iws" afterPath="$PROJECT_DIR$/server.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1856,7 +1857,7 @@
       <workItem from="1455900738994" duration="9842000" />
       <workItem from="1455973402762" duration="9386000" />
       <workItem from="1456071673547" duration="9494000" />
-      <workItem from="1456146828266" duration="13857000" />
+      <workItem from="1456146828266" duration="14309000" />
     </task>
     <task id="LOCAL-00001" summary="Switching to QR codes">
       <created>1456073157524</created>
@@ -1882,11 +1883,17 @@
       <option name="project" value="LOCAL" />
       <updated>1456259083136</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding auto-reconnect">
+      <created>1456327283071</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1456327283071</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42579000" />
+    <option name="totallyTimeSpent" value="43031000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="832" extended-state="6" />
@@ -1937,7 +1944,8 @@
     <MESSAGE value="Switching to QR codes" />
     <MESSAGE value="Alpha state" />
     <MESSAGE value="Specify host address on command line" />
-    <option name="LAST_COMMIT_MESSAGE" value="Specify host address on command line" />
+    <MESSAGE value="Adding auto-reconnect" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding auto-reconnect" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
