@@ -62,7 +62,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
-    private static final long BULK_MODE_SCAN_DELAY_MS = 1500L;
+    private static final long BULK_MODE_SCAN_DELAY_MS = 3000L;
 
 
     private CameraManager cameraManager;
@@ -205,7 +205,14 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
 
         setTitle("Scan Codes");
-        ensureDiscoverable();
+
+        // delay added to ensure we're set up already..otherwise bug occurs
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ensureDiscoverable();
+            }
+        }, 1000);
 
     }
 
@@ -355,7 +362,6 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
         if (scannedText.toLowerCase().startsWith("http")) {
 
-
             StringRequest stringRequest = new StringRequest(Request.Method.GET, scannedText,
                     new Response.Listener<String>() {
                         @Override
@@ -366,7 +372,8 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Failure:" + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
             // Add the request to the RequestQueue.
@@ -386,7 +393,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Failure" + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
             // Add the request to the RequestQueue.

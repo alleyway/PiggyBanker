@@ -38,4 +38,8 @@
         android:layout_weight="2"
         />
 
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/button_scan"
+            android:onClick="scanForDevicesClicked"
+            android:padding="16dp"/>
 </LinearLayout>

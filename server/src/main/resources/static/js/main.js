@@ -26,7 +26,7 @@ $(function () {
                     });
                 }
 
-                if (message.status == "RESET") {
+                if ((message.gameId == sessionId || sessionId == null) && message.status == "RESET") {
                     animateOut(false);
                     window.alert("Game over, Great job!");
                     resetStartCode();

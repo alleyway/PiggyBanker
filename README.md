@@ -12,6 +12,8 @@ Piggy banker is a an open source project which demonstrates the following elemen
  - Graphing Data Points
  - Continuous Delivery
 
+To test a live demo, you visit [piggybanker.alleywayconsulting.com](http://piggybanker.alleywayconsulting.com)
+
 ## Build Instructions
 
 
@@ -21,7 +23,7 @@ Piggy banker is a an open source project which demonstrates the following elemen
 
 ## Run Instructions
 
-After building, you can run the app locally. The companion app be on the same subnet as the host, or the host be publicly accessible.
+After building, you can run the server locally. The companion app be on the same subnet as the host, or the host be publicly accessible.
 
     server$ java -jar -Dhost.address=192.168.0.99 build/libs/piggygraph-server-VERSION.jar
 

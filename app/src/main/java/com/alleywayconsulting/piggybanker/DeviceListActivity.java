@@ -44,11 +44,6 @@ public class DeviceListActivity extends ActivityBase {
     private static final String TAG = "DeviceListActivity";
 
     /**
-     * Return Intent extra
-     */
-    public static String EXTRA_DEVICE_ADDRESS = "device_address";
-
-    /**
      * Member fields
      */
     private BluetoothAdapter mBtAdapter;
@@ -90,15 +85,6 @@ public class DeviceListActivity extends ActivityBase {
         // Get the local Bluetooth adapter
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // Get a set of currently paired devices
-        Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
-
-        // If there are paired devices, add each one to the ArrayAdapter
-
-        for (BluetoothDevice device : pairedDevices) {
-            allDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-        }
-
     }
 
     @Override
@@ -126,6 +112,7 @@ public class DeviceListActivity extends ActivityBase {
     private void doDiscovery() {
         Log.d(TAG, "doDiscovery()");
 
+        allDevicesArrayAdapter.clear();
         // Indicate scanning in the title
         setProgressBarIndeterminateVisibility(true);
         setTitle(R.string.scanning);
@@ -140,6 +127,15 @@ public class DeviceListActivity extends ActivityBase {
 
         // Request discover from BluetoothAdapter
         mBtAdapter.startDiscovery();
+        // Get a set of currently paired devices
+        Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+
+        // If there are paired devices, add each one to the ArrayAdapter
+
+        for (BluetoothDevice device : pairedDevices) {
+            allDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+        }
+
     }
 
     /**
@@ -193,4 +189,7 @@ public class DeviceListActivity extends ActivityBase {
         }
     };
 
+    public void scanForDevicesClicked(View view) {
+        doDiscovery();
+    }
 }

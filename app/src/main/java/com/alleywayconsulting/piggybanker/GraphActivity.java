@@ -24,28 +24,6 @@ public class GraphActivity extends BluetoothActivityBase {
 
     private LineChart mChart;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_graph, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +37,6 @@ public class GraphActivity extends BluetoothActivityBase {
 
         // no description text
         mChart.setDescription("");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -124,6 +101,8 @@ public class GraphActivity extends BluetoothActivityBase {
         });
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
+        setTitle("Graphing");
+
 
     }
 
