@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -136,8 +135,6 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
 
         handler = null;
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

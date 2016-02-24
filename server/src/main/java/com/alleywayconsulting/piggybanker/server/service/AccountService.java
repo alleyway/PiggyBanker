@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public interface AccountService {
 
-    Integer[] DENOMINATIONS = new Integer[]{1, 5, 10, 20, 25, 50, 75, 100};
+    Integer[] DENOMINATIONS = new Integer[]{1, 5, 10, 20, 25, 50, 75};
 
     Integer MAX_DEPOSITS = 7;
 
