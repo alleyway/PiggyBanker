@@ -1,6 +1,6 @@
 # PiggyGraph
 
-Piggy graph is a an open source project which demonstrates the following frameworks:
+Piggy graph is a an open source project which demonstrates the following elements:
 
  - Gradle
  - Spring Boot
@@ -21,11 +21,9 @@ Piggy graph is a an open source project which demonstrates the following framewo
 
 ## Run Instructions
 
-    To run locally, the app must be on the same subnet as the host, or the host be publicly accessable.
+After building, you can run the app locally. The companion app be on the same subnet as the host, or the host be publicly accessible.
 
-    Note: You must execute with Java 8
-
-    server$ java -jar -Dhost.address=192.168.0.99 build/libs/piggygraph-server-0.0.1-SNAPSHOT.jar
+    server$ java -jar -Dhost.address=192.168.0.99 build/libs/piggygraph-server-VERSION.jar
 
 ## Deployment Instructions
 

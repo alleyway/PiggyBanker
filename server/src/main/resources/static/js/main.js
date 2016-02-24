@@ -11,41 +11,51 @@ $(function () {
 
     var coinOrigWidth = coin.width();
 
-    // defined a connection to a new socket endpoint
-    var socket = new SockJS('/stomp');
 
-    var stompClient = Stomp.over(socket);
+    var stompClient;
 
-    stompClient.connect({}, function (frame) {
-        // subscribe to the /topic/message endpoint
-        stompClient.subscribe("/topic/message", function (data) {
-            var message = JSON.parse(data.body);
-            if (message.gameId == sessionId) {
-                console.log("we're starting a new game, set up UI..");
+    var frameRecieved = function () {
+            // subscribe to the /topic/message endpoint
+            stompClient.subscribe("/topic/message", function (data) {
+                var message = JSON.parse(data.body);
+                if (message.gameId == sessionId) {
+                    console.log("we're starting a new game, set up UI..");
 
-                $("#instructions_row").fadeOut(1000, function(){
-                    $("#pig_row").fadeIn(500);
-                });
-            }
+                    $("#instructions_row").fadeOut(1000, function(){
+                        $("#pig_row").fadeIn(500);
+                    });
+                }
 
-            if (message.status == "RESET") {
-                animateOut(false);
-                window.alert("Game over, Great job!");
-                resetStartCode();
-                $("#pig_row").fadeOut(1000, function(){
-                    $("#instructions_row").fadeIn(500);
-                });
+                if (message.status == "RESET") {
+                    animateOut(false);
+                    window.alert("Game over, Great job!");
+                    resetStartCode();
+                    $("#pig_row").fadeOut(1000, function(){
+                        $("#instructions_row").fadeIn(500);
+                    });
 
-            }
+                }
 
-            if (message.status == "HEARTBEAT") {
-                blink(2);
-            }
+                if (message.status == "HEARTBEAT") {
+                    blink(2);
+                }
 
-            if (message.sessionId != sessionId) return;
-            animateOut(true, message);
-        });
-    });
+                if (message.sessionId != sessionId) return;
+                animateOut(true, message);
+            });
+    };
+
+    var errorCallback = function() {
+        setTimeout(startConnection, 2000);
+    };
+
+    var startConnection = function() {
+        var socket = new SockJS('/stomp');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, frameRecieved, errorCallback);
+    };
+
+    startConnection();
 
     resetStartCode();
 
