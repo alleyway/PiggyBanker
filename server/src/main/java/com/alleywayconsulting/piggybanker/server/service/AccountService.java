@@ -22,4 +22,6 @@ public interface AccountService {
     ConcurrentHashMap<Long, ArrayList<Deposit>> getLedger();
 
     Deposit depositToAccount(Long sessionId, Deposit deposit) throws AccountNotFoundException, MaxDepositsException;
+
+    Deposit getNextDepositForAccount(Long sessionId) throws AccountNotFoundException;
 }

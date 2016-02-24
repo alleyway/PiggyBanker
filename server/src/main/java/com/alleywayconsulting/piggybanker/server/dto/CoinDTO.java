@@ -15,14 +15,17 @@ public class CoinDTO implements Serializable {
 
     public Integer amount;
 
+    public String day;
+
     public String barcodeContent;
 
     public Long sessionId;
 
-    public CoinDTO(Long sessionId, Integer amount, String barcodeContent) {
+    public CoinDTO(Long sessionId, Integer amount, String day, String barcodeContent) {
         this.sessionId = sessionId;
         this.date = Calendar.getInstance().getTime();
         this.amount = amount;
+        this.day = day;
         this.barcodeContent = barcodeContent;
     }
 

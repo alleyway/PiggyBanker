@@ -93,14 +93,13 @@ public class GameController {
     }
 
     private void sendNextCoin(Long sessionId) throws Exception {
-        int randomNumber = ThreadLocalRandom.current().nextInt(0, AccountService.DENOMINATIONS.length);
-        Integer amount = AccountService.DENOMINATIONS[randomNumber];
-        Deposit deposit = new Deposit();
-        deposit.setAmount(amount);
+
+        Deposit deposit = accountService.getNextDepositForAccount(sessionId);
+
         try {
             accountService.depositToAccount(sessionId, deposit);
-            String barcodeXML = barcodeService.createSVGBarcode(String.valueOf(amount));
-            CoinDTO coin = new CoinDTO(sessionId, amount, barcodeXML);
+            String barcodeXML = barcodeService.createSVGBarcode(deposit.getQRCodeValue());
+            CoinDTO coin = new CoinDTO(sessionId, deposit.getAmount(), deposit.getDayOfWeek(), barcodeXML);
             template.convertAndSend("/topic/message", coin);
 
         } catch (AccountNotFoundException e) {

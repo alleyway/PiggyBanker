@@ -4,8 +4,6 @@ import android.bluetooth.BluetoothDevice;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -48,10 +46,6 @@ public class GraphActivity extends BluetoothActivityBase {
         mChart.setGridBackgroundColor(getResources().getColor(R.color.pg_topaz));
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
-
-        // set an alternative background color
-//        mChart.setBackgroundColor(Color.LTGRAY);
-
 
 
         LineData data = new LineData();
@@ -110,34 +104,29 @@ public class GraphActivity extends BluetoothActivityBase {
     protected void onResume() {
         super.onResume();
 
-    //    feedMultiple();
-
         String address = getIntent().getExtras().getString(EXTRA_DEVICE_ADDRESS);
 
         BluetoothDevice device = getBluetoothAdapter().getRemoteDevice(address);
         // Attempt to connect to the device
         connectDevice(device);
-
     }
-
-    protected String[] mDays = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
 
     @Override
     protected void receiveBtMessage(String message) {
 
-        if (Constants.GAME_RESET.equals(message)){
+        if (Constants.GAME_RESET.equals(message)) {
             mChart.getData().clearValues();
             mChart.notifyDataSetChanged();
         } else {
-            Long number = Long.valueOf(message);
-            addEntry(number);
+            String[] split = message.split("-");
+            addEntry(Long.valueOf(split[0]), split[1]);
         }
 
     }
 
 
-    private void addEntry(Long number) {
+    private void addEntry(Long amount, String dayOfWeek) {
 
         LineData data = mChart.getData();
 
@@ -152,9 +141,9 @@ public class GraphActivity extends BluetoothActivityBase {
             }
 
             // add a new x-value first
-            data.addXValue(mDays[data.getXValCount() % 7]);
+            data.addXValue(dayOfWeek);
 
-            data.addEntry(new Entry(number, set.getEntryCount()), 0);
+            data.addEntry(new Entry(amount, set.getEntryCount()), 0);
 
 
             // let the chart know it's data has changed
@@ -195,33 +184,6 @@ public class GraphActivity extends BluetoothActivityBase {
             }
         });
         return set;
-    }
-
-    private void feedMultiple() {
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                for (int i = 0; i < 7; i++) {
-
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            addEntry(Math.round((Math.random() * 100)));
-                        }
-                    });
-
-                    try {
-                        Thread.sleep(35);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 
 }

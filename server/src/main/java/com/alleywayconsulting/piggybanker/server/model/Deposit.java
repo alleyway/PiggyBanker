@@ -1,5 +1,6 @@
 package com.alleywayconsulting.piggybanker.server.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -7,6 +8,8 @@ import java.util.Date;
  * Copyright (c) Alleyway Consulting, LLC
  */
 public class Deposit {
+
+    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE");
 
     private Integer amount;
 
@@ -27,4 +30,17 @@ public class Deposit {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
+    public String getDayOfWeek() {
+        return dateFormatter.format(date);
+    }
+
+    public String getQRCodeValue() {
+        StringBuilder sb = new StringBuilder(String.valueOf(amount));
+        sb.append("-");
+        sb.append(getDayOfWeek());
+        return sb.toString();
+    }
+
 }

@@ -349,31 +349,32 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         String scannedText = rawResult.getText();
 
 
-        try {
-            URL url = new URL(scannedText);
-
-            mBaseUrl = url.getProtocol() + "://" +url.getAuthority();
-            Log.i(TAG, "scanned: " + scannedText);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         //Toast.makeText(getApplicationContext(), "Scanned: " + scannedText, Toast.LENGTH_SHORT).show();
 
         if (scannedText.toLowerCase().startsWith("http")) {
+            try {
+                URL url = new URL(scannedText);
+
+                mBaseUrl = url.getProtocol() + "://" +url.getAuthority();
+                Log.i(TAG, "scanned: " + scannedText);
+
+            } catch (MalformedURLException e) {
+                showToast("Error: " + e.getMessage());
+            }
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, scannedText,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             mSessionId = response;
-                            Toast.makeText(getApplicationContext(), "Server: " + response, Toast.LENGTH_SHORT).show();
+                            showToast("Server: " + response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Failure:" + error.toString(), Toast.LENGTH_SHORT).show();
+                    showToast("Failure: " + error.toString());
+
                 }
             });
             // Add the request to the RequestQueue.
@@ -393,7 +394,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Failure" + error.toString(), Toast.LENGTH_SHORT).show();
+                    showToast("Failure: " + error.toString());
                 }
             });
             // Add the request to the RequestQueue.
@@ -404,6 +405,10 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
         restartPreviewAfterDelay(BULK_MODE_SCAN_DELAY_MS);
 
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
 
