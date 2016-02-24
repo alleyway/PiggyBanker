@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-../gradlew build && scp build/libs/piggy*.jar zanzibar:/srv/piggybanker/piggybanker_server.jar
+../gradlew clean build && scp build/libs/piggy*.jar zanzibar:/srv/piggybanker/piggybanker_server.jar
