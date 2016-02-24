@@ -205,6 +205,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
 
 
         setTitle("Scan Codes");
+        ensureDiscoverable();
 
     }
 
@@ -288,10 +289,6 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                 startActivity(intent);
                 break;
 
-            case R.id.menu_discoverable:
-                ensureDiscoverable();
-                break;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -303,7 +300,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         if (getBluetoothAdapter().getScanMode() !=
                 BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
             Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 900);
             startActivity(discoverableIntent);
         }
     }
