@@ -22,6 +22,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -39,6 +41,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -97,6 +110,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         return cameraManager;
     }
 
+    private LineChart mChart;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -114,6 +128,129 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         queue = Volley.newRequestQueue(this);
+
+        createChart();
+    }
+
+    private void createChart() {
+        mChart = (LineChart) findViewById(R.id.chart);
+        //mChart.setOnChartValueSelectedListener(this);
+
+        // no description text
+        mChart.setDescription("");
+
+        // enable touch gestures
+        mChart.setTouchEnabled(false);
+
+        // enable scaling and dragging
+        mChart.setDragEnabled(true);
+        mChart.setScaleEnabled(true);
+        mChart.setDrawGridBackground(false);
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        mChart.setPinchZoom(true);
+
+
+        LineData data = new LineData();
+        data.setValueTextColor(Color.WHITE);
+
+        // add empty data
+        mChart.setData(data);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+
+        // get the legend (only possible after setting data)
+        Legend l = mChart.getLegend();
+        l.setEnabled(false);
+
+        XAxis xl = mChart.getXAxis();
+        xl.setTypeface(tf);
+        xl.setTextSize(13f);
+        xl.setTextColor(Color.WHITE);
+        xl.setDrawGridLines(false);
+        xl.setAvoidFirstLastClipping(true);
+        xl.setSpaceBetweenLabels(5);
+        xl.setEnabled(true);
+        xl.setAxisLineColor(Color.TRANSPARENT);
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setEnabled(true);
+        leftAxis.setAxisLineColor(Color.TRANSPARENT);
+        leftAxis.setTypeface(tf);
+        leftAxis.setTextColor(Color.WHITE);
+        leftAxis.setGridColor(Color.argb(128, 255, 255, 255));
+        leftAxis.setAxisMaxValue(100f);
+        leftAxis.setAxisMinValue(0f);
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setTextSize(15f);
+
+        //remove the decimals from axis values
+        leftAxis.setValueFormatter(new YAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, YAxis yAxis) {
+                return "";
+            }
+        });
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setEnabled(false);
+    }
+
+    private void addEntry(Long amount, String dayOfWeek) {
+
+        LineData data = mChart.getData();
+
+        if (data != null) {
+
+            ILineDataSet set = data.getDataSetByIndex(0);
+            // set.addEntry(...); // can be called as well
+
+            if (set == null) {
+                set = createSet();
+                data.addDataSet(set);
+            }
+
+            // add a new x-value first
+            data.addXValue(dayOfWeek);
+
+            data.addEntry(new Entry(amount, set.getEntryCount()), 0);
+
+
+            // let the chart know it's data has changed
+            mChart.notifyDataSetChanged();
+
+            // limit the number of visible entries
+            mChart.setVisibleXRangeMaximum(120);
+            // mChart.setVisibleYRange(30, AxisDependency.LEFT);
+
+            // move to the latest entry
+            mChart.moveViewToX(data.getXValCount() - 121);
+
+            // this automatically refreshes the chart (calls invalidate())
+            // mChart.moveViewTo(data.getXValCount()-7, 55f,
+            // AxisDependency.LEFT);
+        }
+    }
+
+    private LineDataSet createSet() {
+
+        LineDataSet set = new LineDataSet(null, "Dynamic Data");
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setLineWidth(2.5f);
+        set.setColor(Color.argb(128, 240, 240, 240));
+        set.setCircleColor(getResources().getColor(R.color.pg_gold));
+        set.setCircleRadius(8f);
+
+        set.setHighLightColor(Color.rgb(244, 0, 0));
+        set.setValueTextColor(Color.WHITE);
+        set.setValueTextSize(13f);
+        set.setDrawValues(true);
+        set.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return Math.round(value) + "";
+            }
+        });
+        return set;
     }
 
     @Override
@@ -364,7 +501,7 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                         @Override
                         public void onResponse(String response) {
                             mSessionId = response;
-                            showToast("Server: " + response);
+                            showToast("Starting new session...");
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -377,6 +514,9 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
             // Add the request to the RequestQueue.
             queue.add(stringRequest);
             sendBtMessage(Constants.GAME_RESET);
+            mChart.setData(new LineData());
+            mChart.invalidate();
+
         } else {
             //pass on to bluetooth if still connected
 
@@ -394,10 +534,19 @@ public final class CaptureActivity extends BluetoothActivityBase implements Surf
                     showToast("Failure: " + error.toString());
                 }
             });
-            // Add the request to the RequestQueue.
-            queue.add(stringRequest);
 
-            sendBtMessage(scannedText);
+            String[] split = scannedText.split("-");
+
+            Long amount = Long.valueOf(split[0]);
+
+            String dayOfWeek = split[1];
+
+            if (!mChart.getData().getXVals().contains(dayOfWeek)){
+                // only if we haven't scanned it already...
+                addEntry(amount, dayOfWeek);
+                sendBtMessage(scannedText);
+                queue.add(stringRequest);
+            }
         }
 
         restartPreviewAfterDelay(BULK_MODE_SCAN_DELAY_MS);

@@ -116,8 +116,8 @@ public class GraphActivity extends BluetoothActivityBase {
     protected void receiveBtMessage(String message) {
 
         if (Constants.GAME_RESET.equals(message)) {
-            mChart.getData().clearValues();
-            mChart.notifyDataSetChanged();
+            mChart.setData(new LineData());
+            mChart.invalidate();
         } else {
             String[] split = message.split("-");
             addEntry(Long.valueOf(split[0]), split[1]);
