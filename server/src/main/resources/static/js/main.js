@@ -69,12 +69,13 @@ $(function () {
 
         $("<img/>", {
             src: "/api/game/startcode/" + sessionId,
-            class: "img-responsive"
+            class: "img-responsive",
+
+            onclick:"startSession(" + sessionId + ");"
         }).appendTo(startCodeContainer);
 
-        startCodeContainer.attr("href", "/api/game/start/" + sessionId);
-
     }
+
 
     function animateIn() {
 
@@ -134,3 +135,8 @@ $(function () {
     }
 });
 
+function startSession(sessionId){
+    $.ajax({
+        url: "/api/game/start/" + sessionId
+    });
+}

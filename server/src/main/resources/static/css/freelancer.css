@@ -438,7 +438,13 @@ footer .footer-below {
 }
 #startcode_container {
   margin: 10px;
+  text-align: center;
 }
+#startcode_container img {
+  width: 150px;
+  height: auto;
+}
+
 .scanme {
   border-radius: 22px;
   -moz-border-radius: 22px;
