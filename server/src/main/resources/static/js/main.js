@@ -7,7 +7,7 @@ $(function () {
 
     var amountDiv = $("#amount");
 
-    var blinkImg = $("#piggy_blink");
+    var piggyEyes = $("#piggy_eyes");
 
     var coinOrigWidth = coin.width();
 
@@ -125,13 +125,13 @@ $(function () {
     // Use of recursion
     function blink(timesToBlink) {
         if (timesToBlink == 0) return;
-        blinkImg.css({opacity: 1});
+        piggyEyes.css({opacity: 1});
         setTimeout(function(){
-            blinkImg.css({opacity:0});
+            piggyEyes.css({opacity:0});
             setTimeout(function(){
                 blink(--timesToBlink);
             },400);
-        }, 300);
+        }, 600);
     }
 
     function reposition() {
