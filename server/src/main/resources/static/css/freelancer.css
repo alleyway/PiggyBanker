@@ -431,7 +431,8 @@ footer .footer-below {
 }
 
 #barcode_container img {
-  width: 50%;
+  width: 96px;
+  height: 96px;
   margin-top: 10%;
   margin-bottom: 6px;
 }

@@ -50,7 +50,7 @@ public class BarcodeServiceImpl implements BarcodeService {
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         hints.put(EncodeHintType.MARGIN, 1);
 
-        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 150, 150, hints);
+        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 96, 96, hints);
 
         SVGGraphics2D svgDocument = toSvgDocument(bitMatrix, new MatrixToImageConfig());
 
