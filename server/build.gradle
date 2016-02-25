@@ -16,7 +16,7 @@ apply plugin: 'application'
 
 jar {
     baseName = 'piggybanker-server'
-    version = '0.0.1-SNAPSHOT'
+    version = '1.0'
 }
 
 mainClassName = 'com.alleywayconsulting.piggybanker.server.PiggyBankerApplication'
