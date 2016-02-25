@@ -23,7 +23,7 @@ To test a live demo, you visit [piggybanker.alleywayconsulting.com](http://piggy
 
 ## Run Instructions
 
-After building, you can run the server locally. The companion app be on the same subnet as the host, or the host be publicly accessible.
+After building, you can run the server locally. The companion app must be on the same subnet as the host, or the host be publicly accessible with port 8089.
 
     server$ java -jar -Dhost.address=192.168.0.99 build/libs/piggygraph-server-VERSION.jar
 
