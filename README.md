@@ -13,13 +13,14 @@ Piggy banker is a an open source project which demonstrates the following elemen
  - Continuous Delivery
 
 
-Watch the video
+Watch the video...
 
-[![PiggyBanker Demo](//raw.githubusercontent.com/alleywayconsulting/PiggyBanker/master/img/Video_thumbnail.png)](https://www.youtube.com/watch?v=ipmkdvtIpzA "PiggyBanker App Demo")
+[![PiggyBanker Demo](https://raw.githubusercontent.com/alleywayconsulting/PiggyBanker/master/img/Video_thumbnail.png)](https://www.youtube.com/watch?v=ipmkdvtIpzA "PiggyBanker App Demo")
 
-OR
 
-Test a live demo at  [piggybanker.alleywayconsulting.com](http://piggybanker.alleywayconsulting.com)
+
+
+...or download the app and test the live demo at  [piggybanker.alleywayconsulting.com](http://piggybanker.alleywayconsulting.com)
 
 
 ## Build Instructions
