@@ -12,7 +12,15 @@ Piggy banker is a an open source project which demonstrates the following elemen
  - Graphing Data Points
  - Continuous Delivery
 
-To test a live demo, you visit [piggybanker.alleywayconsulting.com](http://piggybanker.alleywayconsulting.com)
+
+Watch the video
+
+[![PiggyBanker Demo](//raw.githubusercontent.com/alleywayconsulting/PiggyBanker/master/img/Video_thumbnail.png)](https://www.youtube.com/watch?v=ipmkdvtIpzA "PiggyBanker App Demo")
+
+OR
+
+Test a live demo at  [piggybanker.alleywayconsulting.com](http://piggybanker.alleywayconsulting.com)
+
 
 ## Build Instructions
 
@@ -66,4 +74,5 @@ Node.js - https://nodejs.org/
 Bower
 
     npm install -g bower
+
 
